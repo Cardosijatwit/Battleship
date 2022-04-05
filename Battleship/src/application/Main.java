@@ -10,11 +10,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane lane2029q938403248209843= new BorderPane();
+			BorderPane lane = new BorderPane();
 			Scene scene0 = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			Tile tile = new Tile(0, 0, 64, 64, TileType.Grass);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
