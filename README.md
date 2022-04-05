@@ -1,2 +1,2 @@
 # Battleship
-This is okay
+Battleship Game
