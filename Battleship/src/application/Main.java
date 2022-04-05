@@ -16,6 +16,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Tile tile = new Tile(0, 0, 64, 64, TileType.Grass);
+			Scene scene1 = new Scene(root,400,400);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
