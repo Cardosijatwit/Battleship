@@ -14,6 +14,7 @@ public class Main extends Application {
 		Scene scene = new Scene (organizer.getRoot());
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		// test comment
 	}
 	public static void main(String[] args) {
 		launch(args);
