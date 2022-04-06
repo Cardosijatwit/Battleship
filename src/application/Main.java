@@ -13,8 +13,8 @@ public class Main extends Application {
 		PaneOrganizer organizer = new PaneOrganizer();
 		Scene scene = new Scene (organizer.getRoot());
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
-		// test comment
 	}
 	public static void main(String[] args) {
 		launch(args);
