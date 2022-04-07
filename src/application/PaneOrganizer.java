@@ -9,12 +9,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class PaneOrganizer implements Battle {
 	
 	private BorderPane main;
-	private ArrayList<Button> tiles = new ArrayList<Button>();
+	private ArrayList<Button> tiles = new ArrayList<Button>(0);
 	
 	public PaneOrganizer() {
 		main = new BorderPane();
@@ -117,8 +116,10 @@ public class PaneOrganizer implements Battle {
 	
 	public void Deploy() {
 		for (int i = 0; i < 10; i++) {
-			int r = (int) (Math.random()*(10-1)+1);
+			int r = (int) (Math.random()*((10-1)+1)+1);
+			System.out.println(r);
 			int spot = randomRowCheck(r);
+			System.out.println(spot);
 			tiles.get(spot).setStyle("-fx-background-color: blue;");
 		}
 		
@@ -202,34 +203,34 @@ public class PaneOrganizer implements Battle {
 	
 	private int randomRowCheck (int r) {
 		if (r == 1) {
-			return (int) (Math.random()*(22-13)+13);
+			return (int) (Math.random()*((21-12)+1)+12);
 		}
 		else if (r == 2) {
-			return (int) (Math.random()*(33-24)+24);
+			return (int) (Math.random()*((32-23)+1)+23);
 		}
 		else if (r == 3) {
-			return (int) (Math.random()*(44-35)+35);
+			return (int) (Math.random()*((43-34)+1)+34);
 		}
 		else if (r == 4) {
-			return (int) (Math.random()*(55-46)+46);
+			return (int) (Math.random()*((54-45)+1)+45);
 		}
 		else if (r == 5) {
-			return (int) (Math.random()*(66-57)+57);
+			return (int) (Math.random()*((65-56)+1)+56);
 		}
 		else if (r == 6) {
-			return (int) (Math.random()*(77-68)+68);
+			return (int) (Math.random()*((76-67)+1)+67);
 		}
 		else if (r == 7) {
-			return (int) (Math.random()*(88-79)+79);
+			return (int) (Math.random()*((87-78)+1)+78);
 		}
 		else if (r == 8) {
-			return (int) (Math.random()*(99-90)+90);
+			return (int) (Math.random()*((98-89)+1)+89);
 		}
 		else if (r == 9) {
-			return (int) (Math.random()*(110-101)+101);
+			return (int) (Math.random()*((109-100)+1)+100);
 		}
 		else {
-			return (int) (Math.random()*(121-112)+112);
+			return (int) (Math.random()*((120-111)+1)+111);
 		}
 	}
 	
