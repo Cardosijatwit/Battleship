@@ -42,7 +42,7 @@ public class PaneOrganizer implements Battle {
 		}
 		
 		for (int i = 0; i < 11; i++) {
-			for(int j = 0; j <11; j++) {
+			for(int j = 0; j < 11; j++) {
 				Button button = new Button();
 				tiles.add(button);
 				button.setPrefHeight(50);
@@ -112,12 +112,14 @@ public class PaneOrganizer implements Battle {
 		
 		}	
 		main.getChildren().add(playerGrid);
+		Deploy();
 		
 	}
 	
 	public void Deploy() {
 		int r = (int) Math.floor(Math.random()*(10+1)+1);
 		int spot = randomRowCheck(r);
+		tiles.get(spot).setStyle("-fx-background-color: black;");
 	}
 	
 	
@@ -203,8 +205,29 @@ public class PaneOrganizer implements Battle {
 		else if (r == 2) {
 			return (int) Math.floor(Math.random()*(33-24+1)+24);
 		}
-		else {
+		else if (r == 3) {
 			return (int) Math.floor(Math.random()*(44-35+1)+35);
+		}
+		else if (r == 4) {
+			return (int) Math.floor(Math.random()*(55-46+1)+46);
+		}
+		else if (r == 5) {
+			return (int) Math.floor(Math.random()*(66-57+1)+57);
+		}
+		else if (r == 6) {
+			return (int) Math.floor(Math.random()*(77-68+1)+68);
+		}
+		else if (r == 7) {
+			return (int) Math.floor(Math.random()*(88-79+1)+79);
+		}
+		else if (r == 8) {
+			return (int) Math.floor(Math.random()*(99-90+1)+90);
+		}
+		else if (r == 9) {
+			return (int) Math.floor(Math.random()*(110-101+1)+101);
+		}
+		else {
+			return (int) Math.floor(Math.random()*(121-112)+112);
 		}
 	}
 	
