@@ -102,7 +102,7 @@ public class PaneOrganizer implements Battle {
 						else {
 							System.out.println("Row: " + (firstColumnCheck(GridPane.getRowIndex(button))));
 							System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-							button.setStyle("-fx-background-color: red;");
+							button.setStyle("-fx-background-color: black;");
 						}
 					}
 				});
