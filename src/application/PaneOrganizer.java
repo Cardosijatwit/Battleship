@@ -21,6 +21,7 @@ public class PaneOrganizer implements Battle {
 		main.setPrefHeight(550);
 		main.setPrefWidth(1350);
 		createGrid();
+		Deploy();
 	}
 	
 	public void createGrid() {
@@ -110,28 +111,47 @@ public class PaneOrganizer implements Battle {
 		
 		}	
 		main.getChildren().add(playerGrid);
-		Deploy();
 		
 	}
 	
 	public void Deploy() {
+		
+		int[] spots1 = new int[10];
+		int[] spots2 = new int[10];
+		
 		for (int i = 0; i < 10; i++) {
 			int r = (int) (Math.random()*((10-1)+1)+1);
-			System.out.println(r);
 			int spot = randomRowCheck1(r);
-			System.out.println(spot);
+			spots1[i] = spot;
+			int count1 = 0;
+			for (int j = 0; j < i; j++) {
+				if (spot == spots1[j]) {
+					count1 ++;
+				}
+			}
+			if (count1 == 1) {
+				i--;
+			}
 			tiles.get(spot).setStyle("-fx-background-color: blue;");
 		}
+		
 		for (int i = 0; i < 10; i++) {
 			int r = (int) (Math.random()*((10-1)+1)+1);
-			System.out.println(r);
 			int spot = randomRowCheck2(r);
-			System.out.println(spot);
+			spots2[i] = spot;
+			int count2 = 0;
+			for (int j = 0; j < i; j++) {
+				if (spot == spots2[j]) {
+					count2 ++;
+				}
+			}
+			if (count2 == 1) {
+				i--;
+			}
 			tiles.get(spot).setStyle("-fx-background-color: red;");
 		}
 		
 	}
-	
 	
 	public void Start() {
 		
