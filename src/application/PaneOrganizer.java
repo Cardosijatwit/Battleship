@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
+import java.util.Random;
+
 
 public class PaneOrganizer implements Battle {
 	
@@ -114,7 +116,6 @@ public class PaneOrganizer implements Battle {
 	}
 	
 	public void Deploy() {
-		
 	}
 	
 	public void Start() {
