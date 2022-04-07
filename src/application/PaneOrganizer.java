@@ -8,10 +8,12 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import java.util.ArrayList;
 
 public class PaneOrganizer implements Battle {
 	
 	private BorderPane main;
+	private ArrayList<Button> tiles;
 	
 	public PaneOrganizer() {
 		main = new BorderPane();
@@ -40,6 +42,7 @@ public class PaneOrganizer implements Battle {
 		for (int i = 0; i < 11; i++) {
 			for(int j = 0; j <11; j++) {
 				Button button = new Button();
+				tiles.add(button);
 				button.setPrefHeight(50);
 				button.setPrefWidth(50);
 				if (j >= 1 && j < 11 && i == 0) {
@@ -74,6 +77,7 @@ public class PaneOrganizer implements Battle {
 		for (int i = 0; i < 11; i++) {
 			for(int j = 12; j < 23; j++) {
 				Button button = new Button();
+				tiles.add(button);
 				button.setPrefHeight(50);
 				button.setPrefWidth(50);
 				if (j >= 13 && j < 23 && i == 0) {
