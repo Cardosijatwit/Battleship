@@ -270,11 +270,9 @@ public class PaneOrganizer implements Battle {
 			return (int) (Math.random()*((230-221)+1)+221);
 		}
 		else {
-			return (int) (Math.random()*((120-232)+1)+232);
+			return (int) (Math.random()*((241-232)+1)+232);
 		}
 	}
-	
-	
 	
 	
 }
