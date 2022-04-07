@@ -15,7 +15,7 @@ import java.util.Random;
 public class PaneOrganizer implements Battle {
 	
 	private BorderPane main;
-	private ArrayList<Button> tiles;
+	private ArrayList<Button> tiles = new ArrayList<Button>();
 	
 	public PaneOrganizer() {
 		main = new BorderPane();
@@ -116,7 +116,9 @@ public class PaneOrganizer implements Battle {
 	}
 	
 	public void Deploy() {
+		
 	}
+	
 	
 	public void Start() {
 		
