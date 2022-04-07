@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 
-public class PaneOrganizer {
+public class PaneOrganizer implements Battle {
 	
 	private BorderPane main;
 	
@@ -21,7 +21,7 @@ public class PaneOrganizer {
 		createGrid();
 	}
 	
-	private void createGrid() {
+	public void createGrid() {
 		
 		GridPane playerGrid = new GridPane();
 		for (int i = 0; i < 11; i++) {
@@ -108,6 +108,15 @@ public class PaneOrganizer {
 		main.getChildren().add(playerGrid);
 		
 	}
+	
+	public void Deploy() {
+		
+	}
+	
+	public void Start() {
+		
+	}
+	
 	
 	public Pane getRoot() {
 		return main;
