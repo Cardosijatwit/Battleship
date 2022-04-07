@@ -118,9 +118,16 @@ public class PaneOrganizer implements Battle {
 		for (int i = 0; i < 10; i++) {
 			int r = (int) (Math.random()*((10-1)+1)+1);
 			System.out.println(r);
-			int spot = randomRowCheck(r);
+			int spot = randomRowCheck1(r);
 			System.out.println(spot);
 			tiles.get(spot).setStyle("-fx-background-color: blue;");
+		}
+		for (int i = 0; i < 10; i++) {
+			int r = (int) (Math.random()*((10-1)+1)+1);
+			System.out.println(r);
+			int spot = randomRowCheck2(r);
+			System.out.println(spot);
+			tiles.get(spot).setStyle("-fx-background-color: red;");
 		}
 		
 	}
@@ -201,7 +208,7 @@ public class PaneOrganizer implements Battle {
 		}
 	}
 	
-	private int randomRowCheck (int r) {
+	private int randomRowCheck1 (int r) {
 		if (r == 1) {
 			return (int) (Math.random()*((21-12)+1)+12);
 		}
@@ -231,6 +238,39 @@ public class PaneOrganizer implements Battle {
 		}
 		else {
 			return (int) (Math.random()*((120-111)+1)+111);
+		}
+	}
+	
+	private int randomRowCheck2 (int r) {
+		if (r == 1) {
+			return (int) (Math.random()*((142-133)+1)+133);
+		}
+		else if (r == 2) {
+			return (int) (Math.random()*((153-144)+1)+144);
+		}
+		else if (r == 3) {
+			return (int) (Math.random()*((164-155)+1)+155);
+		}
+		else if (r == 4) {
+			return (int) (Math.random()*((175-166)+1)+166);
+		}
+		else if (r == 5) {
+			return (int) (Math.random()*((186-177)+1)+177);
+		}
+		else if (r == 6) {
+			return (int) (Math.random()*((197-188)+1)+188);
+		}
+		else if (r == 7) {
+			return (int) (Math.random()*((208-199)+1)+199);
+		}
+		else if (r == 8) {
+			return (int) (Math.random()*((219-210)+1)+210);
+		}
+		else if (r == 9) {
+			return (int) (Math.random()*((230-221)+1)+221);
+		}
+		else {
+			return (int) (Math.random()*((120-232)+1)+232);
 		}
 	}
 	
