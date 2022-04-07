@@ -116,7 +116,8 @@ public class PaneOrganizer implements Battle {
 	}
 	
 	public void Deploy() {
-		
+		int r = (int) Math.floor(Math.random()*(10+1)+1);
+		int spot = randomRowCheck(r);
 	}
 	
 	
@@ -194,6 +195,20 @@ public class PaneOrganizer implements Battle {
 			return "10";
 		}
 	}
+	
+	private int randomRowCheck (int r) {
+		if (r == 1) {
+			return (int) Math.floor(Math.random()*(22-13+1)+13);
+		}
+		else if (r == 2) {
+			return (int) Math.floor(Math.random()*(33-24+1)+24);
+		}
+		else {
+			return (int) Math.floor(Math.random()*(44-35+1)+35);
+		}
+	}
+	
+	
 	
 	
 }
