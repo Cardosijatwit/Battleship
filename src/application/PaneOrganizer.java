@@ -8,8 +8,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 public class PaneOrganizer {
 	
@@ -33,11 +31,6 @@ public class PaneOrganizer {
 		
 		playerGrid.getRowConstraints().add(new RowConstraints(550));
 		playerGrid.getColumnConstraints().add(new ColumnConstraints(250));
-		Text midt = new Text();
-		midt.setTextAlignment(TextAlignment.JUSTIFY);
-		midt.setText("Hello There Person");
-		GridPane.setConstraints(midt, 11, 11);
-		playerGrid.getChildren().add(midt);
 		
 		for (int i = 12; i < 23; i++) {
 			playerGrid.getRowConstraints().add(new RowConstraints(50));
@@ -69,8 +62,8 @@ public class PaneOrganizer {
 						if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 0) || (GridPane.getColumnIndex(button) >= 0 && GridPane.getColumnIndex(button) < 11 && GridPane.getRowIndex(button) == 0)) {
 						}
 						else {
+							System.out.println("Row: " +  (firstColumnCheck(GridPane.getRowIndex(button))));
 							System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-							System.out.println("Row: " + (GridPane.getRowIndex(button)));
 							button.setStyle("-fx-background-color: black;");
 						}
 					}
@@ -103,8 +96,8 @@ public class PaneOrganizer {
 						if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 12) || (GridPane.getColumnIndex(button) >= 12 && GridPane.getColumnIndex(button) < 23 && GridPane.getRowIndex(button) == 0)) {
 						}
 						else {
+							System.out.println("Row: " + (firstColumnCheck(GridPane.getRowIndex(button))));
 							System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-							System.out.println("Row: " + (GridPane.getRowIndex(button)));
 							button.setStyle("-fx-background-color: red;");
 						}
 					}
