@@ -20,7 +20,6 @@ public class PaneOrganizer implements Battle {
 	private ArrayList<Integer> playerShips = new ArrayList<Integer>();
 	private ArrayList<Integer> AI_Ships = new ArrayList<Integer>();
 	private StringBuilder SB = new StringBuilder();
-	private int I = 3; // resusable i variable
 
 	
 	
@@ -644,6 +643,7 @@ public class PaneOrganizer implements Battle {
 				
 	}
 
+	
 	// old code, may be useful later
 	/* button.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
