@@ -14,6 +14,15 @@ public class PaneOrganizer implements Battle {
 	
 	private HBox main;
 	private ArrayList<Button> tiles = new ArrayList<Button>(0);
+	private GridPane playerGrid;
+	private GridPane midGrid;
+	private GridPane AI_Grid;
+	private ArrayList<Integer> playerShips = new ArrayList<Integer>();
+	private ArrayList<Integer> AI_Ships = new ArrayList<Integer>();
+	private StringBuilder SB = new StringBuilder();
+	private int I = 3; // resusable i variable
+
+	
 	
 	// Boots up Battleship resources
 	public PaneOrganizer() {
@@ -31,10 +40,11 @@ public class PaneOrganizer implements Battle {
 	
 	
 	
+	
 	// Creates main 10x10 grids
 	public void createGrid() {
 		
-		GridPane playerGrid = new GridPane();
+		playerGrid = new GridPane();
 		playerGrid.setPrefHeight(550);
 		playerGrid.maxHeight(550);
 		playerGrid.minHeight(550);
@@ -68,23 +78,11 @@ public class PaneOrganizer implements Battle {
 				}
 				playerGrid.getChildren().add(button);
 				GridPane.setConstraints(button, j, i);
-				button.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent arg0) {
-						if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 0) || (GridPane.getColumnIndex(button) >= 0 && GridPane.getColumnIndex(button) < 11 && GridPane.getRowIndex(button) == 0)) {
-						}
-						else {
-							System.out.println("Row: " +  (firstColumnCheck(GridPane.getRowIndex(button))));
-							System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-							button.setStyle("-fx-background-color: black;");
-						}
-					}
-				});
 			}
-			
 		}
 
-		GridPane midGrid = new GridPane();
+		
+		midGrid = new GridPane();
 		midGrid.setPrefHeight(550);
 		midGrid.maxHeight(550);
 		midGrid.minHeight(550);
@@ -105,6 +103,7 @@ public class PaneOrganizer implements Battle {
 		button0.setStyle("-fx-font-size: 2.3em; ");
 		midGrid.getChildren().add(button0);
 		GridPane.setConstraints(button0, 0, 0);
+		
 		Button button1 = new Button();
 		button1.setPrefHeight(450);
 		button1.minHeight(450);
@@ -116,7 +115,7 @@ public class PaneOrganizer implements Battle {
 		GridPane.setConstraints(button1, 0, 1);
 		
 		
-		GridPane AI_Grid = new GridPane();
+		AI_Grid = new GridPane();
 		AI_Grid.setPrefHeight(550);
 		AI_Grid.maxHeight(550);
 		AI_Grid.minHeight(550);
@@ -150,18 +149,6 @@ public class PaneOrganizer implements Battle {
 				}
 				AI_Grid.getChildren().add(button);
 				GridPane.setConstraints(button, j, i);
-				button.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent arg0) {
-						if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 0) || (GridPane.getColumnIndex(button) >= 1 && GridPane.getColumnIndex(button) < 11 && GridPane.getRowIndex(button) == 0)) {
-						}
-						else {
-							System.out.println("Row: " + (firstColumnCheck(GridPane.getRowIndex(button))));
-							System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-							button.setStyle("-fx-background-color: black;");
-						}
-					}
-				});
 			}
 		}	
 		
@@ -169,56 +156,87 @@ public class PaneOrganizer implements Battle {
 		main.getChildren().add(midGrid);
 		main.getChildren().add(AI_Grid);
 	
-
 	}
 	
 	
 	
-	// Deploys enemy and user ships onto main grid
+	
+	// Deploys enemy and user ships onto main grid 
 	public void Deploy() {
 		
-		int[] spots1 = new int[10];
-		int[] spots2 = new int[10];
-		
-		for (int i = 0; i < 10; i++) {
-			int r = (int) (Math.random()*((10-1)+1)+1);
-			int spot = randomRowCheck1(r);
-			spots1[i] = spot;
-			int count1 = 0;
-			for (int j = 0; j < i; j++) {
-				if (spot == spots1[j]) {
-					count1 ++;
+		tiles.get(121).setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+				SB.append(10 - playerShips.size());
+				SB.append(" ships remaining");
+				tiles.get(122).setText(SB.toString());
+				SB.setLength(0);
+				tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+				tiles.get(121).setText("Concede");
+				tiles.get(121).setStyle("-fx-font-size: 2.3em;");
+				
+				for (int i = 0; i < 10; i++) {
+					int r = (int) (Math.random()*((10-1)+1)+1);
+					int spot = randomRowCheck2(r);
+					int count = 0;
+					for (int j = 0; j < i; j++) {
+						if (spot == AI_Ships.get(j)) {
+							count ++;
+						}
+					}
+					if (count == 1) {
+						i--;
+					}
+					else { 
+						AI_Ships.add(spot);
+					}
+					tiles.get(spot).setStyle("-fx-background-color: red;");
 				}
+				
+				tiles.get(0).setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+						public void handle(ActionEvent arg0) {
+							for (int i = 0; i < 1 && playerShips.size() < 10; i++) {
+								int r = (int) (Math.random()*((10-1)+1)+1);
+								int spot = randomRowCheck1(r);
+								int count1 = 0;
+								for (int j = 0; j < playerShips.size(); j++) {
+									if (spot == playerShips.get(j)) {
+										count1 ++;
+									}
+								}
+								if (count1 == 1) {
+									i--;
+								}
+								else {
+									playerShips.add(spot);
+									SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+									SB.append(10 - playerShips.size());
+									SB.append(" ships remaining");
+									tiles.get(122).setText(SB.toString());
+									tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+									SB.setLength(0);
+								}
+								tiles.get(spot).setStyle("-fx-background-color: blue;");
+							}
+						}
+					});
+				
+				tileClickPreparer();
+				
 			}
-			if (count1 == 1) {
-				i--;
-			}
-			tiles.get(spot).setStyle("-fx-background-color: blue;");
-		}
+		});
 		
-		for (int i = 0; i < 10; i++) {
-			int r = (int) (Math.random()*((10-1)+1)+1);
-			int spot = randomRowCheck2(r);
-			spots2[i] = spot;
-			int count2 = 0;
-			for (int j = 0; j < i; j++) {
-				if (spot == spots2[j]) {
-					count2 ++;
-				}
-			}
-			if (count2 == 1) {
-				i--;
-			}
-			tiles.get(spot).setStyle("-fx-background-color: red;");
-		}
-		
+	
 	}
+	
 	
 	
 	
 	// Starts a game of Battleship
 	public void Start() {
-		
+	
 	}
 	
 	
@@ -360,6 +378,286 @@ public class PaneOrganizer implements Battle {
 			return (int) (Math.random()*((243-234)+1)+234);
 		}
 	}
+	
+	private void tileClickPreparer () {
+		for (int i = 12; i < 22; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 23; i < 33; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 34; i < 44; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 45; i < 55; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 56; i < 66; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 67; i < 77; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 78; i < 88; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 89; i < 99; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 100; i < 110; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		for (int i = 111; i < 121; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					int tilecheck = 0;
+					if (playerShips.size() < 10) {
+						for (int j = 0; j < playerShips.size(); j++) {
+							if (playerShips.get(j) == I) {
+								tilecheck = 1;
+							}	
+						}
+						if (tilecheck != 1) {
+							tiles.get(I).setStyle("-fx-background-color: blue;");
+							playerShips.add(I);
+							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append(10 - playerShips.size());
+							SB.append(" ships remaining");
+							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+							SB.setLength(0);
+						}
+					}
+				}
+			});
+		}
+		
+				
+	}
+
+	// old code, may be useful later
+	/* button.setOnAction(new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent arg0) {
+			if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 0) || (GridPane.getColumnIndex(button) >= 1 && GridPane.getColumnIndex(button) < 11 && GridPane.getRowIndex(button) == 0)) {
+			}
+			else {
+				System.out.println("Row: " + (firstColumnCheck(GridPane.getRowIndex(button))));
+				System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
+				button.setStyle("-fx-background-color: black;");
+			}
+		}
+	});
+	*/
 	
 	
 }
