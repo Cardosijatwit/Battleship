@@ -218,6 +218,9 @@ public class PaneOrganizer implements Battle {
 									SB.setLength(0);
 								}
 								tiles.get(spot).setStyle("-fx-background-color: blue;");
+								if (playerShips.size() == 10) {
+									Start();
+								}
 							}
 						}
 					});
@@ -227,7 +230,6 @@ public class PaneOrganizer implements Battle {
 			}
 		});
 		
-	
 	}
 	
 	
@@ -235,9 +237,12 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-	
+		
 	}
 	
+	public void gameOver() {
+		
+	}
 	
 	public Pane getRoot() {
 		return main;
@@ -401,6 +406,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
+						if (playerShips.size() == 10) {
+							Start();
+						}
 					}
 				}
 			});
@@ -426,6 +434,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setText(SB.toString());
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
+						}
+						if (playerShips.size() == 10) {
+							Start();
 						}
 					}
 				}
@@ -453,6 +464,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
+						if (playerShips.size() == 10) {
+							Start();
+						}
 					}
 				}
 			});
@@ -478,6 +492,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setText(SB.toString());
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
+						}
+						if (playerShips.size() == 10) {
+							Start();
 						}
 					}
 				}
@@ -505,6 +522,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
+						if (playerShips.size() == 10) {
+							Start();
+						}
 					}
 				}
 			});
@@ -530,6 +550,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setText(SB.toString());
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
+						}
+						if (playerShips.size() == 10) {
+							Start();
 						}
 					}
 				}
@@ -557,6 +580,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
+						if (playerShips.size() == 10) {
+							Start();
+						}
 					}
 				}
 			});
@@ -582,6 +608,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setText(SB.toString());
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
+						}
+						if (playerShips.size() == 10) {
+							Start();
 						}
 					}
 				}
@@ -609,6 +638,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
+						if (playerShips.size() == 10) {
+							Start();
+						}
 					}
 				}
 			});
@@ -634,6 +666,9 @@ public class PaneOrganizer implements Battle {
 							tiles.get(122).setText(SB.toString());
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
+						}
+						if (playerShips.size() == 10) {
+							Start();
 						}
 					}
 				}

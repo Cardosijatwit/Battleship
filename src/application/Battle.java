@@ -7,6 +7,8 @@ public interface Battle {
 	void Deploy();
 	
 	void Start();
+	
+	void gameOver();
 
 
 }
