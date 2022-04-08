@@ -237,7 +237,42 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-		
+		playerTurn(); 
+		enemyTurn(); 
+	}
+	private void playerTurn() {
+		final int I = 0;
+		boolean hit = false;
+		tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+			for (int j = 0; j < AI_Ships.size(); j++) {
+			if (I == AI_Ships.get(j)) {
+				tiles.get(I).setStyle("-fx-background-color: green;");
+				AI_Ships.remove(I); 
+				hit = true;
+						}
+			}
+			if (hit != true) {
+				tiles.get(I).setStyle("-fx-background-color: red;");
+			}
+		}	
+	});
+}	
+private void enemyTurn() {
+	int r = (int) (Math.random()*((10-1)+1)+1);
+	int spot = randomRowCheck2(r);
+	boolean hit = false; 
+		for (int j = 0; j < playerShips.size(); j++) {
+		if (spot == AI_Ships.get(j)) {
+			tiles.get(spot).setStyle("-fx-background-color: green;");
+			playerShips.remove(spot); 
+			hit = true; 
+			}
+		}
+		if (hit != true) {
+			tiles.get(spot).setStyle("-fx-background-color: red;");
+		}
 	}
 	
 	public void gameOver() {
