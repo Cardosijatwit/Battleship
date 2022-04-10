@@ -20,6 +20,8 @@ public class PaneOrganizer implements Battle {
 	private ArrayList<Integer> playerShips = new ArrayList<Integer>();
 	private ArrayList<Integer> AI_Ships = new ArrayList<Integer>();
 	private StringBuilder SB = new StringBuilder();
+	private boolean gameOver = false; 
+	private boolean turnOver = false; 
 
 	
 	
@@ -237,31 +239,52 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-		playerTurn(); 
-		enemyTurn(); 
+	final int I = 0; 
+	tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent arg0) {
+		playerTurn(I);
+		}
+	}); 
+	if (gameOver == true) {
+		gameOver(); 
 	}
-	private void playerTurn() {
-		final int I = 0;
-		boolean hit = false;
-		tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-			for (int j = 0; j < AI_Ships.size(); j++) {
-			if (I == AI_Ships.get(j)) {
-				tiles.get(I).setStyle("-fx-background-color: green;");
-				AI_Ships.remove(I); 
-				hit = true;
-						}
-			}
-			if (hit != true) {
-				tiles.get(I).setStyle("-fx-background-color: red;");
-			}
-		}	
-	});
-}	
+	else {
+		Start(); 
+	}
+	}
+	
+		private void playerTurn(int i) {
+			boolean hit = false;
+			turnOver = false; 
+			tiles.get(i).setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent arg0) {
+				for (int j = 0; j < AI_Ships.size(); j++) {
+				if (i == AI_Ships.get(j)) {
+					tiles.get(i).setStyle("-fx-background-color: green;");
+					AI_Ships.remove(i); 
+					hit = true;
+					turnOver = true; 
+							}
+				}
+				}
+			});
+			
+				if (hit != true) {
+					tiles.get(i).setStyle("-fx-background-color: red;"); 
+					turnOver = true; 
+					 
+				}
+				if (turnOver == true) {
+					enemyTurn(); 
+				}
+		}
+
 private void enemyTurn() {
+	final int I = 0; 
+	if (turnOver == true) {
 	int r = (int) (Math.random()*((10-1)+1)+1);
-	int spot = randomRowCheck2(r);
+	int spot = randomRowCheck1(r);
 	boolean hit = false; 
 		for (int j = 0; j < playerShips.size(); j++) {
 		if (spot == AI_Ships.get(j)) {
@@ -273,7 +296,14 @@ private void enemyTurn() {
 		if (hit != true) {
 			tiles.get(spot).setStyle("-fx-background-color: red;");
 		}
+		tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+			playerTurn(I);
+			}
+		}); 
 	}
+}	
 	
 	public void gameOver() {
 		
