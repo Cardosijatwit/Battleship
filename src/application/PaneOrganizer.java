@@ -309,15 +309,15 @@ public class PaneOrganizer implements Battle {
 	
 	public void gameOver() {
 		if (playerPoints == 10) {
-			SB.append("Game Over\n You Won!");
+			SB.append("Game Over\n\nYou Won!");
 			tiles.get(122).setText(SB.toString());
-			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+			tiles.get(122).setStyle("-fx-font-size: 2.3em; -fx-background-color: white;");
 			SB.setLength(0);
 		}
 		else if (enemyPoints == 10) {
-			SB.append("Game Over\n You Lost.");
+			SB.append("Game Over\n\nYou Lost");
 			tiles.get(122).setText(SB.toString());
-			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+			tiles.get(122).setStyle("-fx-font-size: 2.3em; -fx-background-color: white;");
 			SB.setLength(0);
 		}
 		tileClickClearer();
