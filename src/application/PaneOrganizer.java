@@ -174,8 +174,15 @@ public class PaneOrganizer implements Battle {
 				tiles.get(122).setText(SB.toString());
 				SB.setLength(0);
 				tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
-				tiles.get(121).setText("Concede");
+				tiles.get(121).setText("Reset");
 				tiles.get(121).setStyle("-fx-font-size: 2.3em;");
+				
+				tiles.get(121).setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent arg0) {
+						Reset();
+					}
+				});
 				
 				for (int i = 0; i < 10; i++) {
 					int r = (int) (Math.random()*((10-1)+1)+1);
@@ -305,9 +312,33 @@ private void enemyTurn() {
 	}
 }	
 	
+
 	public void gameOver() {
-		
+		if (playerShips.size() == 0 && AI_Ships.size() > 0) {
+			SB.append("Game Over\n You Lost!");
+			tiles.get(122).setText(SB.toString());
+			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+			SB.setLength(0);
+		}
+		else if (playerShips.size() > 0 && AI_Ships.size() == 0) {
+			SB.append("Game Over\n You Won!");
+			tiles.get(122).setText(SB.toString());
+			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+			SB.setLength(0);
+		}
 	}
+	
+	
+	public void Reset() {
+		main.getChildren().clear();
+		tiles.clear();
+		playerShips.clear();
+		AI_Ships.clear();
+		SB.setLength(0);
+		createGrid();
+		Deploy();
+	}
+	
 	
 	public Pane getRoot() {
 		return main;

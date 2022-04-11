@@ -9,6 +9,8 @@ public interface Battle {
 	void Start();
 	
 	void gameOver();
+	
+	void Reset();
 
 
 }
