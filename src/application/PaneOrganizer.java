@@ -21,13 +21,11 @@ public class PaneOrganizer implements Battle {
 	private ArrayList<Integer> playerShips = new ArrayList<Integer>();
 	private ArrayList<Integer> AI_Ships = new ArrayList<Integer>();
 	private StringBuilder SB = new StringBuilder();
-	private boolean gameOver = false; 
-	private boolean turnOver = false; 
 	private boolean playerTurn = false;
-	private boolean enemyTurn = false;
 	private boolean hit = false;
 	private int playerPoints = 0;
 	private int enemyPoints = 0;
+	private int Count = 0;
 
 
 	
@@ -253,46 +251,48 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-		SB.append("It's Your Turn");
+		SB.append("It's Your Turn\n Click the plus button\non the enemy's grid\nto hit a random tile\nClick a tile on\n the enemy's grid to\n hit	 that tile");
 		tiles.get(122).setText(SB.toString());
 		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 		SB.setLength(0);
 		tileClickPreparer2();
 	}
 		
+	// Runs the player turn, allowing for user to pick tile to hit
 	private void playerTurnRun() {
+		SB.append("It's Your Turn");
+		tiles.get(122).setText(SB.toString());
+		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+		SB.setLength(0);
 		playerTurn = true;
 	}
 
-		//Runs the enemy turn and chooses a random play square to hit.
-		private void enemyTurnRun() {
-		       final int I = 0;
-		       if (turnOver == true) {
-		       int r = (int) (Math.random()*((10-1)+1)+1);
-		       int spot = randomRowCheck1(r);
-		       while(tiles.get(spot).getStyle() == "-fx-background-color: red;" || tiles.get(spot).getStyle() == "-fx-background-color: green;") {
-		              r = (int) (Math.random()*((10-1)+1)+1);
-		              spot = randomRowCheck1(r);
-		       }
-		       boolean hit = false;
-		              for (int j = 0; j < playerShips.size(); j++) {
-		              if (spot == playerShips.get(j)) {
-		                    tiles.get(spot).setStyle("-fx-background-color: red;");
-		                    playerShips.remove(j);
-		                    hit = true;
-		                    }
-		              }
-		              if (hit != true) {
-		                    tiles.get(spot).setStyle("-fx-background-color: green;");
-		              }
-		              tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
-		                    @Override
-		                    public void handle(ActionEvent arg0) {
-		                    playerTurnRun();
-		                    }
-		              });
-		       }
-		}     
+	// Runs the enemy turn, choosing a random tile to hit
+	private void enemyTurnRun() {
+		playerTurn = false;
+		SB.append("It's The Enemy's Turn");
+		tiles.get(122).setText(SB.toString());
+		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+		SB.setLength(0);
+		for (int i = 0; i < 10; i++) {
+			int r = (int) (Math.random()*((10-1)+1)+1);
+			int spot = randomRowCheck2(r);
+			int count = 0;
+			for (int j = 0; j < i; j++) {
+				if (spot == AI_Ships.get(j)) {
+					count ++;
+				}
+			}
+			if (count == 1) {
+				i--;
+			}
+			else { 
+				AI_Ships.add(spot);
+			}
+			tiles.get(spot).setStyle("-fx-background-color: red;");
+		}
+		
+	}     
 
 		
 	public void gameOver() {
@@ -758,6 +758,38 @@ public class PaneOrganizer implements Battle {
 
 	
 	private void tileClickPreparer2 () {
+			tiles.get(123).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						int r = (int) (Math.random()*((10-1)+1)+1);
+						int spot = randomRowCheck2(r);
+						while (tiles.get(spot).getStyle() == "-fx-background-color: green;" || tiles.get(spot).getStyle() == "-fx-background-color: green;") {
+							r = (int) (Math.random()*((10-1)+1)+1);
+							spot = randomRowCheck2(r);
+						}
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == spot) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(spot).getStyle() != "-fx-background-color: green;") {
+							tiles.get(spot).setStyle("-fx-background-color: green;");
+							hit = false;
+							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
+							tiles.get(spot).setStyle("-fx-background-color: red;");
+							hit = false;
+							enemyTurnRun();
+						}
+					}
+				}
+			});
 		for (int i = 135; i < 145; i++) {
 			final int I = i;
 			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
