@@ -204,7 +204,7 @@ public class PaneOrganizer implements Battle {
 						AI_Ships.add(spot);
 					}
 					// uncomment to see AI ship placements
-					// tiles.get(spot).setStyle("-fx-background-color: red;");
+					// tiles.get(spot).setStyle("-fx-background-color: black;");
 				}
 				
 				tiles.get(0).setOnAction(new EventHandler<ActionEvent>() {
