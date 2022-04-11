@@ -171,7 +171,7 @@ public class PaneOrganizer implements Battle {
 		tiles.get(121).setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+				SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 				SB.append(10 - playerShips.size());
 				SB.append(" ships remaining");
 				tiles.get(122).setText(SB.toString());
@@ -203,7 +203,8 @@ public class PaneOrganizer implements Battle {
 					else { 
 						AI_Ships.add(spot);
 					}
-					tiles.get(spot).setStyle("-fx-background-color: red;");
+					// uncomment to see AI ship placements
+					// tiles.get(spot).setStyle("-fx-background-color: red;");
 				}
 				
 				tiles.get(0).setOnAction(new EventHandler<ActionEvent>() {
@@ -223,7 +224,7 @@ public class PaneOrganizer implements Battle {
 								}
 								else {
 									playerShips.add(spot);
-									SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+									SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 									SB.append(10 - playerShips.size());
 									SB.append(" ships remaining");
 									tiles.get(122).setText(SB.toString());
@@ -251,11 +252,12 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-		SB.append("It's Your Turn\n\n\nClick the plus button on\n\nthe enemy's grid to hit\n\na random tile\n\n\nClick a tile on the\n\nenemy's grid to hit\n\nthat tile");
+		SB.append("It's Your Turn\n\nClick the plus button on the\nenemy's grid to shoot a\nrandom tile\n\nClick a tile on the enemy's\ngrid to shoot that tile");
 		tiles.get(122).setText(SB.toString());
 		tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 		SB.setLength(0);
+		playerTurn = true;
 		tileClickPreparer2();
 	}
 		
@@ -286,11 +288,6 @@ public class PaneOrganizer implements Battle {
 				hit = true;
 			}
 		}
-		try {
-			Thread.sleep(1000);
-		}
-		catch (Exception e){
-		}
 		if (hit == true && tiles.get(spot).getStyle() != "-fx-background-color: green;") {
 			tiles.get(spot).setStyle("-fx-background-color: red;");
 			hit = false;
@@ -298,29 +295,27 @@ public class PaneOrganizer implements Battle {
 			if (enemyPoints == 10) {
 				gameOver();
 			}
+			else {
+				playerTurnRun();
+			}
 		}
 		else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
 			tiles.get(spot).setStyle("-fx-background-color: green;");
 			hit = false;
+			playerTurnRun();
 		}
-		try {
-			Thread.sleep(1000);
-		}
-		catch (Exception e){
-		}
-		playerTurnRun();
 	}     
 
 	
 	public void gameOver() {
 		if (playerPoints == 10) {
-			SB.append("Game Over\n You Lost!");
+			SB.append("Game Over\n You Won!");
 			tiles.get(122).setText(SB.toString());
 			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 			SB.setLength(0);
 		}
 		else if (enemyPoints == 10) {
-			SB.append("Game Over\n You Won!");
+			SB.append("Game Over\n You Lost.");
 			tiles.get(122).setText(SB.toString());
 			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 			SB.setLength(0);
@@ -497,7 +492,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -527,7 +522,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -557,7 +552,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -587,7 +582,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -617,7 +612,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -647,7 +642,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -677,7 +672,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -707,7 +702,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -737,7 +732,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -767,7 +762,7 @@ public class PaneOrganizer implements Battle {
 						if (tilecheck != 1) {
 							tiles.get(I).setStyle("-fx-background-color: blue;");
 							playerShips.add(I);
-							SB.append("Your board is on the left\n\nClick the plus button to add\n\na ship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
+							SB.append("Your board is on the left\n\nClick the plus button in the\n top left corner to add a\nship randomly\n\nClick a tile on the board\nto place a ship\n\nYou have ");
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
@@ -809,7 +804,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
 							tiles.get(spot).setStyle("-fx-background-color: red;");
@@ -1125,6 +1122,12 @@ public class PaneOrganizer implements Battle {
 	}
 	
 	private void tileClickClearer () {
+		tiles.get(123).setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+			}
+		});
 		for (int i = 135; i < 145; i++) {
 			final int I = i;
 			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
@@ -1208,24 +1211,7 @@ public class PaneOrganizer implements Battle {
 				
 	}
 	
-	
-	
-	// old code, may be useful later
-	/* button.setOnAction(new EventHandler<ActionEvent>() {
-		@Override
-		public void handle(ActionEvent arg0) {
-			if ((GridPane.getRowIndex(button) >= 0 && GridPane.getRowIndex(button) < 11 && GridPane.getColumnIndex(button) == 0) || (GridPane.getColumnIndex(button) >= 1 && GridPane.getColumnIndex(button) < 11 && GridPane.getRowIndex(button) == 0)) {
-			}
-			else {
-				System.out.println("Row: " + (firstColumnCheck(GridPane.getRowIndex(button))));
-				System.out.println("Column " + (firstRowCheck(GridPane.getColumnIndex(button))));
-				button.setStyle("-fx-background-color: black;");
-			}
-		}
-	});
-	*/
-	
-	
+
 }
 
 
