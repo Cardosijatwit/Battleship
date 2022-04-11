@@ -259,7 +259,7 @@ public class PaneOrganizer implements Battle {
 	else {
 		Start(); 
 	}
-	}
+}
 	
 		private void playerTurn(int i) {
 			boolean hit = false;
@@ -294,14 +294,14 @@ private void enemyTurn() {
 	int spot = randomRowCheck1(r);
 	boolean hit = false; 
 		for (int j = 0; j < playerShips.size(); j++) {
-		if (spot == AI_Ships.get(j)) {
-			tiles.get(spot).setStyle("-fx-background-color: green;");
+		if (spot == playerShips.get(j)) {
+			tiles.get(spot).setStyle("-fx-background-color: red;");
 			playerShips.remove(spot); 
 			hit = true; 
 			}
 		}
 		if (hit != true) {
-			tiles.get(spot).setStyle("-fx-background-color: red;");
+			tiles.get(spot).setStyle("-fx-background-color: green;");
 		}
 		tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
 			@Override
