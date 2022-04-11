@@ -287,31 +287,35 @@ public class PaneOrganizer implements Battle {
 				}
 		}
 
-private void enemyTurn() {
-	final int I = 0; 
-	if (turnOver == true) {
-	int r = (int) (Math.random()*((10-1)+1)+1);
-	int spot = randomRowCheck1(r);
-	boolean hit = false; 
-		for (int j = 0; j < playerShips.size(); j++) {
-		if (spot == playerShips.get(j)) {
-			tiles.get(spot).setStyle("-fx-background-color: red;");
-			playerShips.remove(spot); 
-			hit = true; 
-			}
-		}
-		if (hit != true) {
-			tiles.get(spot).setStyle("-fx-background-color: green;");
-		}
-		tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-			playerTurn(I);
-			}
-		}); 
-	}
-}	
-	
+		//Runs the enemy turn and chooses a random play square to hit.
+		private void enemyTurn() {
+		       final int I = 0;
+		       if (turnOver == true) {
+		       int r = (int) (Math.random()*((10-1)+1)+1);
+		       int spot = randomRowCheck1(r);
+		       while(tiles.get(spot).getStyle() == "-fx-background-color: red;" || tiles.get(spot).getStyle() == "-fx-background-color: green;") {
+		              r = (int) (Math.random()*((10-1)+1)+1);
+		              spot = randomRowCheck1(r);
+		       }
+		       boolean hit = false;
+		              for (int j = 0; j < playerShips.size(); j++) {
+		              if (spot == playerShips.get(j)) {
+		                    tiles.get(spot).setStyle("-fx-background-color: red;");
+		                    playerShips.remove(j);
+		                    hit = true;
+		                    }
+		              }
+		              if (hit != true) {
+		                    tiles.get(spot).setStyle("-fx-background-color: green;");
+		              }
+		              tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+		                    @Override
+		                    public void handle(ActionEvent arg0) {
+		                    playerTurn(I);
+		                    }
+		              });
+		       }
+		}     
 
 	public void gameOver() {
 		if (playerShips.size() == 0 && AI_Ships.size() > 0) {
