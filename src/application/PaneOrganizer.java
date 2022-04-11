@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
+import java.util.Date; 
 
 public class PaneOrganizer implements Battle {
 	
@@ -22,6 +23,12 @@ public class PaneOrganizer implements Battle {
 	private StringBuilder SB = new StringBuilder();
 	private boolean gameOver = false; 
 	private boolean turnOver = false; 
+	private boolean playerTurn = false;
+	private boolean enemyTurn = false;
+	private boolean hit = false;
+	private int playerPoints = 0;
+	private int enemyPoints = 0;
+
 
 	
 	
@@ -246,49 +253,19 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-	final int I = 0; 
-	tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
-		@Override
-		public void handle(ActionEvent arg0) {
-		playerTurn(I);
-		}
-	}); 
-	if (gameOver == true) {
-		gameOver(); 
+		SB.append("It's Your Turn");
+		tiles.get(122).setText(SB.toString());
+		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
+		SB.setLength(0);
+		tileClickPreparer2();
 	}
-	else {
-		Start(); 
+		
+	private void playerTurnRun() {
+		playerTurn = true;
 	}
-}
-	
-		private void playerTurn(int i) {
-			boolean hit = false;
-			turnOver = false; 
-			tiles.get(i).setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent arg0) {
-				for (int j = 0; j < AI_Ships.size(); j++) {
-				if (i == AI_Ships.get(j)) {
-					tiles.get(i).setStyle("-fx-background-color: green;");
-					AI_Ships.remove(i); 
-					hit = true;
-					turnOver = true; 
-							}
-				}
-				}
-			});
-			
-				if (hit != true) {
-					tiles.get(i).setStyle("-fx-background-color: red;"); 
-					turnOver = true; 
-					 
-				}
-				if (turnOver == true) {
-					enemyTurn(); 
-				}
-		}
 
 		//Runs the enemy turn and chooses a random play square to hit.
-		private void enemyTurn() {
+		private void enemyTurnRun() {
 		       final int I = 0;
 		       if (turnOver == true) {
 		       int r = (int) (Math.random()*((10-1)+1)+1);
@@ -311,12 +288,13 @@ public class PaneOrganizer implements Battle {
 		              tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
 		                    @Override
 		                    public void handle(ActionEvent arg0) {
-		                    playerTurn(I);
+		                    playerTurnRun();
 		                    }
 		              });
 		       }
 		}     
 
+		
 	public void gameOver() {
 		if (playerShips.size() == 0 && AI_Ships.size() > 0) {
 			SB.append("Game Over\n You Lost!");
@@ -774,10 +752,243 @@ public class PaneOrganizer implements Battle {
 				}
 			});
 		}
-		
 				
 	}
 
+	
+	private void tileClickPreparer2 () {
+		for (int i = 135; i < 145; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 146; i < 156; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 157; i < 167; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 168; i < 178; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 179; i < 189; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 190; i < 200; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 201; i < 211; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 212; i < 222; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 223; i < 233; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+		for (int i = 234; i < 244; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					if (playerTurn == true) {
+						for (int j = 0; j < AI_Ships.size(); j++) {
+							if (AI_Ships.get(j) == I) {
+								hit = true;
+							}
+						}
+						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							playerPoints += 1;
+							enemyTurnRun();
+						}
+						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+							tiles.get(I).setStyle("-fx-background-color: red;");
+							enemyTurnRun();
+						}
+					}
+				}
+			});
+		}
+				
+	}
 	
 	// old code, may be useful later
 	/* button.setOnAction(new EventHandler<ActionEvent>() {
