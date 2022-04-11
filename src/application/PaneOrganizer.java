@@ -8,8 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import java.util.ArrayList;
-import java.util.Date; 
+import java.util.ArrayList; 
+import javafx.scene.text.TextAlignment;
 
 public class PaneOrganizer implements Battle {
 	
@@ -25,8 +25,6 @@ public class PaneOrganizer implements Battle {
 	private boolean hit = false;
 	private int playerPoints = 0;
 	private int enemyPoints = 0;
-	private int Count = 0;
-
 
 	
 	
@@ -177,6 +175,7 @@ public class PaneOrganizer implements Battle {
 				SB.append(10 - playerShips.size());
 				SB.append(" ships remaining");
 				tiles.get(122).setText(SB.toString());
+				tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 				SB.setLength(0);
 				tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 				tiles.get(121).setText("Reset");
@@ -228,6 +227,7 @@ public class PaneOrganizer implements Battle {
 									SB.append(10 - playerShips.size());
 									SB.append(" ships remaining");
 									tiles.get(122).setText(SB.toString());
+									tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 									tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 									SB.setLength(0);
 								}
@@ -251,8 +251,9 @@ public class PaneOrganizer implements Battle {
 	
 	// Starts a game of Battleship
 	public void Start() {
-		SB.append("It's Your Turn\n Click the plus button\non the enemy's grid\nto hit a random tile\nClick a tile on\n the enemy's grid to\n hit	 that tile");
+		SB.append("It's Your Turn\n\n\nClick the plus button on\n\nthe enemy's grid to hit\n\na random tile\n\n\nClick a tile on the\n\nenemy's grid to hit\n\nthat tile");
 		tiles.get(122).setText(SB.toString());
+		tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 		SB.setLength(0);
 		tileClickPreparer2();
@@ -274,27 +275,43 @@ public class PaneOrganizer implements Battle {
 		tiles.get(122).setText(SB.toString());
 		tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 		SB.setLength(0);
-		for (int i = 0; i < 10; i++) {
-			int r = (int) (Math.random()*((10-1)+1)+1);
-			int spot = randomRowCheck2(r);
-			int count = 0;
-			for (int j = 0; j < i; j++) {
-				if (spot == AI_Ships.get(j)) {
-					count ++;
-				}
-			}
-			if (count == 1) {
-				i--;
-			}
-			else { 
-				AI_Ships.add(spot);
-			}
-			tiles.get(spot).setStyle("-fx-background-color: red;");
+		int r = (int) (Math.random()*((10-1)+1)+1);
+		int spot = randomRowCheck1(r);
+		while (tiles.get(spot).getStyle() == "-fx-background-color: green;" || tiles.get(spot).getStyle() == "-fx-background-color: red;") {
+			r = (int) (Math.random()*((10-1)+1)+1);
+			spot = randomRowCheck1(r);
 		}
-		
+		for (int j = 0; j < playerShips.size(); j++) {
+			if (playerShips.get(j) == spot) {
+				hit = true;
+			}
+		}
+		try {
+			Thread.sleep(1000);
+		}
+		catch (Exception e){
+		}
+		if (hit == true && tiles.get(spot).getStyle() != "-fx-background-color: green;") {
+			tiles.get(spot).setStyle("-fx-background-color: red;");
+			hit = false;
+			enemyPoints += 1;
+			if (enemyPoints == 10) {
+				gameOver();
+			}
+		}
+		else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
+			tiles.get(spot).setStyle("-fx-background-color: green;");
+			hit = false;
+		}
+		try {
+			Thread.sleep(1000);
+		}
+		catch (Exception e){
+		}
+		playerTurnRun();
 	}     
 
-		
+	
 	public void gameOver() {
 		if (playerPoints == 10) {
 			SB.append("Game Over\n You Lost!");
@@ -323,9 +340,11 @@ public class PaneOrganizer implements Battle {
 	}
 	
 	
+	
 	public Pane getRoot() {
 		return main;
 	}
+	
 	
 	
 	
@@ -482,6 +501,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -511,6 +531,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -540,6 +561,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -569,6 +591,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -598,6 +621,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -627,6 +651,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -656,6 +681,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -685,6 +711,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -714,6 +741,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -743,6 +771,7 @@ public class PaneOrganizer implements Battle {
 							SB.append(10 - playerShips.size());
 							SB.append(" ships remaining");
 							tiles.get(122).setText(SB.toString());
+							tiles.get(122).setTextAlignment(TextAlignment.CENTER);
 							tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 							SB.setLength(0);
 						}
@@ -764,7 +793,7 @@ public class PaneOrganizer implements Battle {
 					if (playerTurn == true) {
 						int r = (int) (Math.random()*((10-1)+1)+1);
 						int spot = randomRowCheck2(r);
-						while (tiles.get(spot).getStyle() == "-fx-background-color: green;" || tiles.get(spot).getStyle() == "-fx-background-color: green;") {
+						while (tiles.get(spot).getStyle() == "-fx-background-color: green;" || tiles.get(spot).getStyle() == "-fx-background-color: red;") {
 							r = (int) (Math.random()*((10-1)+1)+1);
 							spot = randomRowCheck2(r);
 						}
@@ -924,7 +953,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
@@ -953,7 +984,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
@@ -982,7 +1015,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
@@ -1011,7 +1046,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
@@ -1040,7 +1077,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
@@ -1069,7 +1108,9 @@ public class PaneOrganizer implements Battle {
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							enemyTurnRun();
+							else {
+								enemyTurnRun();
+							}
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
