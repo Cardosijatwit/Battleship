@@ -296,18 +296,19 @@ public class PaneOrganizer implements Battle {
 
 		
 	public void gameOver() {
-		if (playerShips.size() == 0 && AI_Ships.size() > 0) {
+		if (playerPoints == 10) {
 			SB.append("Game Over\n You Lost!");
 			tiles.get(122).setText(SB.toString());
 			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 			SB.setLength(0);
 		}
-		else if (playerShips.size() > 0 && AI_Ships.size() == 0) {
+		else if (enemyPoints == 10) {
 			SB.append("Game Over\n You Won!");
 			tiles.get(122).setText(SB.toString());
 			tiles.get(122).setStyle("-fx-font-size: 1.34em; -fx-background-color: white;");
 			SB.setLength(0);
 		}
+		tileClickClearer();
 	}
 	
 	
@@ -769,11 +770,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -792,11 +799,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -815,11 +828,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -838,11 +857,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -861,11 +886,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -884,11 +915,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -907,11 +944,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -930,11 +973,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -953,11 +1002,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -976,11 +1031,17 @@ public class PaneOrganizer implements Battle {
 							}
 						}
 						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+							tiles.get(I).setStyle("-fx-background-color: green;");
+							hit = false;
 							playerPoints += 1;
+							if (playerPoints == 10) {
+								gameOver();
+							}
 							enemyTurnRun();
 						}
 						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
 							tiles.get(I).setStyle("-fx-background-color: red;");
+							hit = false;
 							enemyTurnRun();
 						}
 					}
@@ -989,6 +1050,92 @@ public class PaneOrganizer implements Battle {
 		}
 				
 	}
+	
+	private void tileClickClearer () {
+		for (int i = 135; i < 145; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 146; i < 156; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 157; i < 167; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 168; i < 178; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 179; i < 189; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 190; i < 200; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 201; i < 211; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 212; i < 222; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 223; i < 233; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+		for (int i = 234; i < 244; i++) {
+			final int I = i;
+			tiles.get(I).setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+				}
+			});
+		}
+				
+	}
+	
+	
 	
 	// old code, may be useful later
 	/* button.setOnAction(new EventHandler<ActionEvent>() {
