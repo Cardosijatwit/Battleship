@@ -330,6 +330,10 @@ public class PaneOrganizer implements Battle {
 		playerShips.clear();
 		AI_Ships.clear();
 		SB.setLength(0);
+		playerTurn = false;
+		hit = false;
+		playerPoints = 0;
+		enemyPoints = 0;
 		createGrid();
 		Deploy();
 	}
