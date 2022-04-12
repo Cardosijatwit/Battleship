@@ -811,18 +811,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(spot).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(spot).getStyle() != "-fx-background-color: red;" && tiles.get(spot).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(spot).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(spot).getStyle() != "-fx-background-color: red;" && tiles.get(spot).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(spot).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -841,7 +839,7 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
@@ -850,7 +848,7 @@ public class PaneOrganizer implements Battle {
 							}
 							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -870,7 +868,7 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
@@ -879,7 +877,7 @@ public class PaneOrganizer implements Battle {
 							}
 							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -899,7 +897,7 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
@@ -908,7 +906,7 @@ public class PaneOrganizer implements Battle {
 							}
 							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -928,7 +926,7 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
@@ -937,7 +935,7 @@ public class PaneOrganizer implements Battle {
 							}
 							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -957,18 +955,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -988,18 +984,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -1019,18 +1013,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -1050,18 +1042,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -1081,18 +1071,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
@@ -1112,18 +1100,16 @@ public class PaneOrganizer implements Battle {
 								hit = true;
 							}
 						}
-						if (hit == true && tiles.get(I).getStyle() != "-fx-background-color: green;") {
+						if (hit == true && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: green;");
 							hit = false;
 							playerPoints += 1;
 							if (playerPoints == 10) {
 								gameOver();
 							}
-							else {
-								enemyTurnRun();
-							}
+							enemyTurnRun();
 						}
-						else if (hit == false && tiles.get(I).getStyle() != "-fx-background-color: red;") {
+						else if (hit == false && (tiles.get(I).getStyle() != "-fx-background-color: red;" && tiles.get(I).getStyle() != "-fx-background-color: green;")) {
 							tiles.get(I).setStyle("-fx-background-color: red;");
 							hit = false;
 							enemyTurnRun();
