@@ -283,12 +283,22 @@ public class PaneOrganizer implements Battle {
 			r = (int) (Math.random()*((10-1)+1)+1);
 			spot = randomRowCheck1(r);
 		}
+		int chance = (int)(Math.random()*10);
+		int check = 0;
+		if (chance == 1) {
+			for (int i = 0; i < playerShips.size(); i++) {
+				if (check == 0 && tiles.get(playerShips.get(i)).getStyle() != "-fx-background-color: red;") {
+					spot = playerShips.get(i);
+					check ++;
+				}
+			}
+		}
 		for (int j = 0; j < playerShips.size(); j++) {
 			if (playerShips.get(j) == spot) {
 				hit = true;
 			}
 		}
-		if (hit == true && tiles.get(spot).getStyle() != "-fx-background-color: green;") {
+		if (hit == true && (tiles.get(spot).getStyle() != "-fx-background-color: green;" || tiles.get(spot).getStyle() != "-fx-background-color: red;")) {
 			tiles.get(spot).setStyle("-fx-background-color: red;");
 			hit = false;
 			enemyPoints += 1;
@@ -299,7 +309,7 @@ public class PaneOrganizer implements Battle {
 				playerTurnRun();
 			}
 		}
-		else if (hit == false && tiles.get(spot).getStyle() != "-fx-background-color: red;") {
+		else if (hit == false && (tiles.get(spot).getStyle() != "-fx-background-color: red;" || tiles.get(spot).getStyle() != "-fx-background-color: green;")) {
 			tiles.get(spot).setStyle("-fx-background-color: green;");
 			hit = false;
 			playerTurnRun();
